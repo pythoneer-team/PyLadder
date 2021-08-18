@@ -10,8 +10,9 @@
 - Omar D'yab
 - Dina Albarghouthi
 
-# summery :
-Math App to plot and compute  functions for educational purposes 
+# Summary :
+Math App to plot and compute functions for educational purposes 
 Help students to understand the story behind several math concepts.
  
 
+# Staging branch 
