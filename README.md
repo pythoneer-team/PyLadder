@@ -1,3 +1,4 @@
+# Staging branch 
 ## Project Name :
 
   funpymath
@@ -14,5 +15,3 @@
 Math App to plot and compute functions for educational purposes 
 Help students to understand the story behind several math concepts.
  
-
-# Staging branch 
