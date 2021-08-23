@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 
 # Initializing pygame
 pygame.init()
@@ -30,6 +31,14 @@ red_point = pygame.transform.smoothscale(red_point, (36, 51))
 blue_point = pygame.image.load("assets/blue.png")
 blue_point = pygame.transform.smoothscale(blue_point, (36, 51))
 
+# All Dice
+d1 = pygame.image.load("assets/dice_image1.png")
+d2 = pygame.image.load("assets/dice_image2.png")
+d3 = pygame.image.load("assets/dice_image3.png")
+d4 = pygame.image.load("assets/dice_image4.png")
+d5 = pygame.image.load("assets/dice_image5.png")
+d6 = pygame.image.load("assets/dice_image6.png")
+
 # Font and Size
 font = pygame.font.Font('freesansbold.ttf', 32)
 
@@ -54,8 +63,63 @@ def cells_sites(cell):
     return cells[cell][0], cells[cell][1]
 
 
-running = True
+def dice(d):
+    if d == 1:
+        d = d1
+    elif d == 2:
+        d = d2
+    elif d == 3:
+        d = d3
+    elif d == 4:
+        d = d4
+    elif d == 5:
+        d = d5
+    elif d == 6:
+        d = d6
 
+    time_clock = pygame.time.get_ticks()
+    while pygame.time.get_ticks() - time_clock < 1000:
+        window.blit(d, (280, 450))
+        # pygame.display.update()
+
+# Turn
+# sc, lefted, section
+def turn():
+    d = randint(1, 6)  # player dice roll
+    if d == 6:
+        six = True
+    else:
+        six = False
+
+    dice(d)
+    x, y = cells_sites(d)
+    # sc += d
+    # if sc <= 100:
+    #     laddle = ladders(sc)  # checking for ladders for player
+    #     if laddle != sc:
+    #         lefted = True
+    #         pygame.mixer.Sound.play(ladder)
+    #         time_clock = pygame.time.get_ticks()
+    #         sc = laddle
+    #     sink = snakes(sc)
+    #     if sink != sc:  # checking for snakes for player
+    #         section = True
+    #         pygame.mixer.Sound.play(snake_sound)
+    #         sc = sink
+
+    # else:  # checks if player score is not grater than 100
+    #     sc -= d
+    #     time_clock = pygame.time.get_ticks()
+    #     while pygame.time.get_ticks() - time_clock < 1500:
+    #         message_display1_screen("Can't move!", 650, 50, 35, black_color)
+    #         pygame.display.update()
+    # return sc, lefted, section, six
+    return x, y
+
+
+
+running = True
+tuen_p = 1
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -66,10 +130,17 @@ while running:
 
     window.blit(text_start, (260, 592))
 
-    x_red, y_red = cells_sites(0)
+
+    if tuen_p:
+        turn_p = 0
+        x_red, y_red = turn()
+        x_blue, y_blue = turn()
+
+
+    # x_red, y_red = cells_sites(0)
     window.blit(red_point, (x_red, y_red))
 
-    x_blue, y_blue = cells_sites(2)
+    # x_blue, y_blue = cells_sites(2)
     window.blit(blue_point, (x_blue, y_blue))
 
     pygame.display.update()
