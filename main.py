@@ -3,39 +3,76 @@ from random import randint
 
 time_clocks = pygame.time.Clock()
 pygame.init()
-width_screen = 1366
-height_screen = 768
+width = 1366
+height = 768
 
-ic = pygame.image.load("resources/icon.png")
-game_layout_display = pygame.display.set_mode((width_screen, height_screen))
-pygame.display.set_caption("Snakes and Ladders Game ")
-pygame.display.set_icon(ic)
+icon = pygame.image.load("assets/icon.jpg")
+game_layout = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Pyladder Game")
+pygame.display.set_icon(icon)
 pygame.display.update()
-black_color = (10, 10, 10)
-white_color = (250, 250, 250)
-red_color = (200, 0, 0)
-blue_red_color = (240, 0, 0)
-green_color = (0, 200, 0)
-blue_green_color = (0, 230, 0)
-blue_color = (0, 0, 200)
-grey_color = (50, 50, 50)
-yellow_color = (150, 150, 0)
-purple_color = '#BFA2DB'
-blue_purple_color = (60, 0, 190)
 
-menu_background = pygame.image.load("resources/menu.jpg")
-post = pygame.image.load("resources/game_background.jpg")
-initial_background = pygame.image.load("resources/introduction_image.png")
-initial_background2 = pygame.image.load("resources/introduction_image2.png")
-initial_background3 = pygame.image.load("resources/introduction_image3.png")
-initial_background4 = pygame.image.load("resources/introduction_image4.png")
-initial_background5 = pygame.image.load("resources/introduction_image5.png")
-creditations1 = pygame.image.load("resources/owner.png")
-ruless = pygame.image.load("resources/rules.png")
 
+Board = pygame.image.load("assets/Snakes_ladders_big_image.png")
+Menu = pygame.image.load("assets/menu.jpg")
+Background = pygame.image.load("assets/game_background.jpg")
+ourrules = pygame.image.load("assets/rules.png")
+
+back1 = pygame.image.load("assets/introduction_image.png")
+back2 = pygame.image.load("assets/introduction_image2.png")
+back3 = pygame.image.load("assets/introduction_image3.png")
+back4 = pygame.image.load("assets/introduction_image4.png")
+back5 = pygame.image.load("assets/introduction_image5.png")
+
+asac_project = pygame.image.load("assets/ASAC.png")
+asac_project = pygame.transform.smoothscale(asac_project, (width, height))
+
+# All Point
+red_token = pygame.image.load("assets/red.png")
+red_token = pygame.transform.smoothscale(red_token, (36, 51))
+
+blue_token = pygame.image.load("assets/blue.png")
+blue_token = pygame.transform.smoothscale(blue_token, (36, 51))
+
+# All Dice
+dice1 = pygame.image.load("assets/dice_image1.png")
+dice2 = pygame.image.load("assets/dice_image2.png")
+dice3 = pygame.image.load("assets/dice_image3.png")
+dice4 = pygame.image.load("assets/dice_image4.png")
+dice5 = pygame.image.load("assets/dice_image5.png")
+dice6 = pygame.image.load("assets/dice_image6.png")
 
 mouse = pygame.mouse.get_pos()
 click = pygame.mouse.get_pressed()
+
+
+def movement(a):
+    l1 = [[406, 606], [456, 606], [506, 606], [556, 606], [606, 606], [656, 606], [706, 606], [756, 606], [806, 606],
+          [856, 606], [906, 606], [906, 560], [856, 560], [806, 560], [
+              756, 560], [706, 560], [656, 560], [606, 560],
+          [556, 560], [506, 560], [456, 560], [456, 506], [506, 506], [
+              556, 506], [606, 506], [656, 506], [706, 506],
+          [756, 506], [806, 506], [856, 506], [906, 506], [906, 460], [
+              856, 460], [806, 460], [756, 460], [706, 460],
+          [656, 460], [606, 460], [556, 460], [506, 460], [456, 460], [
+              456, 406], [506, 406], [556, 406], [606, 406],
+          [656, 406], [706, 406], [756, 406], [806, 406], [856, 406], [
+              906, 406], [906, 360], [856, 360], [806, 360],
+          [756, 360], [706, 360], [656, 360], [606, 360], [556, 360], [
+              506, 360], [456, 360], [456, 306], [506, 306],
+          [556, 306], [606, 306], [656, 306], [706, 306], [756, 306], [
+              806, 306], [856, 306], [906, 306], [906, 260],
+          [856, 260], [806, 260], [756, 260], [706, 260], [656, 260], [
+              606, 260], [556, 260], [506, 260], [456, 260],
+          [456, 206], [506, 206], [556, 206], [606, 206], [656, 206], [
+              706, 206], [756, 206], [806, 206], [856, 206],
+          [906, 206], [906, 160], [856, 160], [806, 160], [756, 160], [
+              706, 160], [656, 160], [606, 160], [556, 160],
+          [506, 160], [456, 160]]
+    l2 = l1[a]
+    x = l2[0] - 25
+    y = l2[1] - 25
+    return x, y
 
 
 def message_display_screen(text, x, y, fs):
