@@ -47,8 +47,6 @@ dice4 = pygame.image.load("assets/dice_image4.png")
 dice5 = pygame.image.load("assets/dice_image5.png")
 dice6 = pygame.image.load("assets/dice_image6.png")
 
-
-
 # Position of mouse
 mouse = pygame.mouse.get_pos()
 click = pygame.mouse.get_pressed()
@@ -114,24 +112,50 @@ def ladders(x):
     else:
         return x
 
+
+
 # Snake Check Omar
 def snakes(x):
     if x == 17:
-        return 7
+        if math():
+            return 17
+        else:
+            return 7
     elif x == 54:
-        return 34
+        if math():
+            return 54
+        else:
+            return 34
     elif x == 62:
-        return 19
+        if math():
+            return 62
+        else:
+            return 19
     elif x == 64:
-        return 60
+        if math():
+            return 64
+        else:
+            return 60
     elif x == 87:
-        return 36
+        if math():
+            return 87
+        else:    
+            return 36
     elif x == 93:
-        return 73
+        if math():
+            return 93
+        else:   
+            return 73
     elif x == 95:
-        return 75
+        if math():
+            return 95
+        else:  
+            return 75
     elif x == 98:
-        return 79
+        if math():
+            return 98
+        else: 
+            return 79
     else:
         return x
 #  dices and thier images Yousef (to do: change time)
@@ -311,6 +335,9 @@ def playing(btn1):
         game_layout.blit(Background, (0, 0))
         game_layout.blit(Board, (width / 2 - 250, height / 2 - 250))
         break
-    
+
+def math():
+    return True
+
 starter()
 menu()
