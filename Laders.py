@@ -1,3 +1,4 @@
+
 # Ladder check
 def ladders(x):
     if x == 1:
