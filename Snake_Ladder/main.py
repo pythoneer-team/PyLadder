@@ -93,27 +93,7 @@ def turn():
 
     dice(d)
     x, y = cells_sites(d)
-    # sc += d
-    # if sc <= 100:
-    #     laddle = ladders(sc)  # checking for ladders for player
-    #     if laddle != sc:
-    #         lefted = True
-    #         pygame.mixer.Sound.play(ladder)
-    #         time_clock = pygame.time.get_ticks()
-    #         sc = laddle
-    #     sink = snakes(sc)
-    #     if sink != sc:  # checking for snakes for player
-    #         section = True
-    #         pygame.mixer.Sound.play(snake_sound)
-    #         sc = sink
 
-    # else:  # checks if player score is not grater than 100
-    #     sc -= d
-    #     time_clock = pygame.time.get_ticks()
-    #     while pygame.time.get_ticks() - time_clock < 1500:
-    #         message_display1_screen("Can't move!", 650, 50, 35, black_color)
-    #         pygame.display.update()
-    # return sc, lefted, section, six
     return x, y
 
 
