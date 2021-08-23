@@ -93,24 +93,51 @@ def movement(a):
     y = l2[1] - 25
     return x, y
 
+def math():
+    return True    
+
 # Ladder check maram
 def ladders(x):
     if x == 1:
-        return 38
+        if math():
+         return 38
+        else:
+         return 1
     elif x == 4:
-        return 14
+        if math():
+         return 14
+        else:
+         return 14
     elif x == 9:
-        return 31
+        if math():
+          return 31
+        else:
+         return 9
     elif x == 28:
-        return 84
+        if math():
+         return 84
+        else:
+         return 28
     elif x == 21:
-        return 42
+        if math():
+         return 42
+        else:
+         return 21
     elif x == 51:
-        return 67
+        if math():
+         return 67
+        else:
+         return 51
     elif x == 80:
-        return 99
+        if math():
+         return 99
+        else:
+         return 80 
     elif x == 72:
-        return 91
+        if math():
+         return 91
+        else:
+         return 72
     else:
         return x
 
@@ -311,6 +338,7 @@ def playing(btn1):
         game_layout.blit(Background, (0, 0))
         game_layout.blit(Board, (width / 2 - 250, height / 2 - 250))
         break
+
     
 starter()
 menu()
