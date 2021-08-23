@@ -1,4 +1,6 @@
 import pygame
+# pygame.init()
+# pygame.font.init()
 time_clocks = pygame.time.Clock()
 
 game_icon = pygame.image.load("assets/icon.jpg")
