@@ -9,12 +9,14 @@ pygame.init()
 width = 1366
 height = 768
 
+
 # Icon layout and caption
 icon = pygame.image.load("assets/icon.jpg")
 game_layout = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Pyladder Game")
 pygame.display.set_icon(icon)
 pygame.display.update()
+
 
 Board = pygame.image.load("assets/Snakes_ladders_big_image.png")
 Menu = pygame.image.load("assets/menu.jpg")
@@ -367,8 +369,8 @@ def playing(btn1):
     comp_y_c = 606 - 25
     game_layout.blit(red_token, (comp_x_c, comp_y_c))
     game_layout.blit(blue_token, (player1_x_c, player1_y_c))
-    player1_score = 0
-    computer_score = 0
+    gamer1score = 0
+    gamer2score = 0
     rounds = 1
     while True:
         up = False
@@ -390,15 +392,14 @@ def playing(btn1):
         if btn1:
             if button("Click to Roll", mouse[0], mouse[1], 70, 138, 300, 50, green_color, light_green_color, 30,btn1):
                 if rounds == 1:
-                    player1_score, up, down, six = turn(player1_score, up, down,rounds)
-                    player1_x_c, player1_y_c = moving(player1_score)
+                    gamer1score, up, down, six = turn(gamer1score, up, down,rounds)
+                    player1_x_c, player1_y_c = moving(gamer1score)
                     if not six:
                         rounds += 1
-                    # to add code for user when winning dina
-                    if player1_score== 100:
-                        clock = pygame.time.get_ticks()
-                        while pygame.time.get_ticks() - clock < 2500:
-                            display_text("Congratulations You WON", 1000, 50, 50)
+                    if gamer1score == 100:
+                        time = pygame.time.get_ticks()
+                        while pygame.time.get_ticks() - time < 2500:
+                            display_text("Congratulations You WON !", 1000, 50, 50)
                             pygame.display.update()
                         break
             game_layout.blit(red_token, (comp_x_c ,comp_y_c ))
@@ -406,27 +407,26 @@ def playing(btn1):
                 game_layout.blit(blue_token, (player1_x_c + 2, player1_y_c))
             button("Computer", mouse[0], mouse[1], 1100, 138, 200, 50, green_color, light_green_color, 30,btn1)
             if rounds == 2:
-                computer_score, up, down, six = turn(computer_score, up, down,rounds)
-                comp_x_c, comp_y_c = moving(computer_score)
+                gamer2score, up, down, six = turn(gamer2score, up, down,rounds)
+                comp_x_c, comp_y_c = moving(gamer2score)
                 if not six:
                     rounds += 1
                     if btn1 == 21:
                         rounds = 1
-                    if computer_score == 100:
-                        clock = pygame.time.get_ticks()
-                        while pygame.time.get_ticks() - clock < 2000:
-                            display_text("Computer Wins", 1066, 50, 50)
-                            pygame.display.update()
-                        break
-
+                if gamer2score == 100:
+                    time_clock = pygame.time.get_ticks()
+                    while pygame.time.get_ticks() - time_clock < 2000:
+                        display_text("Computer Wins !", 1066, 50, 50)
+                        pygame.display.update()
+                    break
         if up:
-            clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - clock < 1000:
+            time_clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - time_clock < 1000:
                 display_text2("To use the ladder:Please answer a simple question", 700, 50, 35, (250, 250, 250))
                 pygame.display.update()
         if down:
-            clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - clock < 1000:
+            time_clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - time_clock < 1000:
                 display_text2("To avoid a Snake:Please answer a simple question", 750, 50, 35, (250, 250, 250))
                 pygame.display.update()
         clock.tick()
