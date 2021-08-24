@@ -21,7 +21,7 @@ pygame.display.update()
 
 Board = pygame.image.load("assets/Snakes_ladders_big_image.png")
 Menu = pygame.image.load("assets/menu.jpg")
-Background = pygame.image.load("assets/bg_menu.jpg")
+Background = pygame.image.load("assets/game_background.jpg")
 ourrules = pygame.image.load("assets/rules.png")
 ourrules = pygame.transform.smoothscale(ourrules, (width, height))
 back1 = pygame.image.load("assets/introduction_image.png")
@@ -500,7 +500,8 @@ def math():
         else:
             last_question.append(questions[read_q][0])
             get_question = False
-    print(last_question)
+
+    # print(last_question)
     question = pygame.image.load(questions[read_q][0])
     answer = questions[read_q][1]
 
@@ -539,10 +540,10 @@ def math():
                     elif event.key == pygame.K_BACKSPACE:
                         text = text[:-1]
                     else:
-                        # x = re.findall('\d', text)
-                        # if x :
+                        check_text = re.findall('[0-9]', event.unicode)
+                        if check_text:
                             text += event.unicode
-                        # print(x)
+
 
         pygame.draw.rect(game_layout, (30, 30, 30), pygame.Rect(433, 134, 500, 500))
         game_layout.blit(question, (433, 134))
