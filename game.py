@@ -9,14 +9,12 @@ pygame.init()
 width = 1366
 height = 768
 
-
 # Icon layout and caption
 icon = pygame.image.load("assets/icon.jpg")
 game_layout = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Pyladder Game")
 pygame.display.set_icon(icon)
 pygame.display.update()
-
 
 Board = pygame.image.load("assets/Snakes_ladders_big_image.png")
 Menu = pygame.image.load("assets/menu.jpg")
@@ -63,7 +61,6 @@ loss_computer = pygame.image.load("assets/loss_computer.png")
 
 # Position of mouse
 mouse = pygame.mouse.get_pos()
-
 
 # Last Question
 last_question = []
@@ -510,6 +507,54 @@ def math():
     active = False
     text = ''
     done = False
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                Quit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # If the user clicked on the input_box rect.
+                if input_box.collidepoint(event.pos):
+                    # Toggle the active variable.
+                    active = not active
+                else:
+                    active = False
+                # Change the current color of the input box.
+                color = color_active if active else color_inactive
+            if event.type == pygame.KEYDOWN:
+                if active:
+                    if event.key == pygame.K_RETURN:
+                        # check if the player answer the question
+                        if text:
+                            if text == answer:
+                                return True
+                            else:
+                                return False
+                    elif event.key == pygame.K_BACKSPACE:
+                        text = text[:-1]
+                    else:
+                        # x = re.findall('\d', text)
+                        # if x :
+                            text += event.unicode
+                        # print(x)
+    pygame.draw.rect(game_layout, (30, 30, 30), pygame.Rect(433, 134, 500, 500))
+    game_layout.blit(question, (433, 134))
+
+    # Render the current text.
+    txt_surface = font.render(text, True, color)
+
+    # Resize the box if the text is too long.
+    width_box = max(200, txt_surface.get_width()+10)
+
+    input_box.w = width_box
+
+    # Blit the text.
+    game_layout.blit(txt_surface, (input_box.x+5, input_box.y+5))
+
+    # Blit the input_box rect.
+    pygame.draw.rect(game_layout, color, input_box, 2)
+
+    pygame.display.update()
 
 starter()
 menu()
