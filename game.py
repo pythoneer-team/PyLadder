@@ -407,14 +407,20 @@ def playing(btn1):
                     if btn1 == 21:
                         rounds = 1
                     # to add code for computer when winning maram
+                    if computer_score == 100:
+                        clock = pygame.time.get_ticks()
+                        while pygame.time.get_ticks() - clock < 2000:
+                            display_text("Computer Wins", 1066, 50, 50)
+                            pygame.display.update()
+                        break
         if up:
-            time_clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - time_clock < 1000:
+            clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - clock < 1000:
                 display_text2("To use the ladder:Please answer a simple question", 700, 50, 35, (250, 250, 250))
                 pygame.display.update()
         if down:
-            time_clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - time_clock < 1000:
+            clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - clock < 1000:
                 display_text2("To avoid a Snake:Please answer a simple question", 750, 50, 35, (250, 250, 250))
                 pygame.display.update()
         clock.tick()
