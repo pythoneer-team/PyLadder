@@ -65,6 +65,8 @@ loss_computer = pygame.image.load("assets/loss_computer.png")
 mouse = pygame.mouse.get_pos()
 
 
+# Last Question
+last_question = []
 # prompt text when player/computer wins the game , or when a player cant move due to movments being higher than 100  
 def display_text(text, x, y, fontsize):
     Textsize = pygame.font.SysFont("ravie", fontsize)
@@ -464,8 +466,50 @@ def playing(btn1):
         clock.tick()
         pygame.display.update()
 
+
 def math():
-    return False
+    font = pygame.font.Font(None, 32)
+    input_box = pygame.Rect(585, 570, 140, 32)
+
+    questions = [["assets/question/q1.jpg", '15'],
+                 ["assets/question/q2.jpg", '15'],
+                 ["assets/question/q3.jpg", '15'],
+                 ["assets/question/q4.jpg", '15'],
+                 ["assets/question/q5.jpg", '15'],
+                 ["assets/question/q6.jpg", '15'],
+                 ["assets/question/q7.jpg", '15'],
+                 ["assets/question/q8.jpg", '15'],
+                 ["assets/question/q9.jpg", '15'],
+                 ["assets/question/q10.jpg", '15'],
+                 ["assets/question/q11.jpg", '15'],
+                 ["assets/question/q12.jpg", '15'],
+                 ["assets/question/q13.jpg", '15'],
+                 ["assets/question/q14.jpg", '15'],
+                 ["assets/question/q15.jpg", '15'],
+                 ["assets/question/q16.jpg", '15'],
+                 ["assets/question/q17.jpg", '15'],
+                 ["assets/question/q18.jpg", '15']]
+    read_q = randint(0, 17)
+
+    get_question = True
+
+    while get_question:
+        if questions[read_q][0] in last_question:
+            read_q = randint(0, 17)
+        else:
+            last_question.append(questions[read_q][0])
+            get_question = False
+    print(last_question)
+    question = pygame.image.load(questions[read_q][0])
+    answer = questions[read_q][1]
+
+    color_inactive = pygame.Color('lightskyblue3')
+    color_active = pygame.Color('dodgerblue2')
+    color = color_inactive
+
+    active = False
+    text = ''
+    done = False
 
 starter()
 menu()
