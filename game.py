@@ -47,6 +47,20 @@ dice4 = pygame.image.load("assets/dice_image4.png")
 dice5 = pygame.image.load("assets/dice_image5.png")
 dice6 = pygame.image.load("assets/dice_image6.png")
 
+# Sounds
+pygame.mixer.music.load("sound/song1.wav") # And menu first line
+snake_sound = pygame.mixer.Sound("sound/snake2.wav")
+ladder_sound = pygame.mixer.Sound("sound/ladder2.wav")
+win_sound = pygame.mixer.Sound("sound/win1.wav")
+lose_sound = pygame.mixer.Sound("sound/loss3.wav")
+dice_sound = pygame.mixer.Sound("sound/dice1.wav")
+
+# img Win & loss
+wins_player = pygame.image.load("assets/wins_player.png")
+loss_player = pygame.image.load("assets/loss_player.png")
+wins_computer = pygame.image.load("assets/wins_computer.png")
+loss_computer = pygame.image.load("assets/loss_computer.png")
+
 # Position of mouse
 mouse = pygame.mouse.get_pos()
 
@@ -250,7 +264,7 @@ def starter():
     # while pygame.time.get_ticks() - time_clock < 2500:
     #     game_layout.blit(back1, (0, 0))
     #     pygame.display.update()
-        # note we may reomve this one 
+        # note we may reomve this one
     # while True:
     #     time_clock = pygame.time.get_ticks()
     #     while pygame.time.get_ticks() - time_clock < 500:
@@ -268,7 +282,7 @@ def starter():
     #     while pygame.time.get_ticks() - time_clock < 500:
     #         game_layout.blit(back5, (0, 0))
     #         pygame.display.update()
-
+    #
     #     for event in pygame.event.get():
     #         if event.type == pygame.KEYDOWN:
     #             return
@@ -287,6 +301,7 @@ def ASAC():
         pygame.display.update()
 # Main Menu of our game
 def menu():
+    pygame.mixer.music.play(-1)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -328,7 +343,8 @@ def chosen():
 def turn(score, go_up, swallowed,rounds):
     # roll a dice using random number between 1 and 6
     d = randint(1, 6) 
-    print(type(d))
+    # print(type(d))
+    pygame.mixer.Sound.play(dice_sound)
     if d != 6:
         dice(d,rounds)
         six = False
@@ -345,11 +361,13 @@ def turn(score, go_up, swallowed,rounds):
         ladd_score = ladders(score)  # checking for ladders for player
         if ladd_score != score:
             go_up = True
+            pygame.mixer.Sound.play(ladder_sound)
             clock = pygame.time.get_ticks()
             score = ladd_score
         snake_score = snakes(score)
         if snake_score != score:  
             swallowed = True
+            pygame.mixer.Sound.play(snake_sound)
             score = snake_score
     # if score is not grater than 100
     else:  
@@ -388,7 +406,7 @@ def playing(btn1):
                     Quit()
         green_color=(113, 207, 41, 1)
         light_green_color=(0, 230, 0)
-        print(btn1)
+        # print(btn1)
         if btn1:
             if button("Click to Roll", mouse[0], mouse[1], 70, 138, 300, 50, green_color, light_green_color, 30,btn1):
                 if rounds == 1:
@@ -400,6 +418,13 @@ def playing(btn1):
                         time = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time < 2500:
                             display_text("Congratulations You WON !", 1000, 50, 50)
+                            pygame.mixer.music.pause()
+                            while pygame.time.get_ticks() - time < 2500:
+                                game_layout.blit(wins_player, (-5, height / 2 - 100))
+                                game_layout.blit(loss_computer, (width - 120, height / 2))
+                                pygame.display.update()
+                                pygame.mixer.Sound.play(win_sound)
+                            pygame.mixer.music.unpause()
                             pygame.display.update()
                         break
             game_layout.blit(red_token, (comp_x_c ,comp_y_c ))
@@ -417,6 +442,13 @@ def playing(btn1):
                     time_clock = pygame.time.get_ticks()
                     while pygame.time.get_ticks() - time_clock < 2000:
                         display_text("Computer Wins !", 1066, 50, 50)
+                        pygame.mixer.music.pause()
+                        while pygame.time.get_ticks() - time_clock < 2500:
+                            game_layout.blit(wins_computer, (width - 250, height / 2 - 100))
+                            game_layout.blit(loss_player, (-5, height / 2))
+                            pygame.display.update()
+                            pygame.mixer.Sound.play(lose_sound)
+                        pygame.mixer.music.unpause()
                         pygame.display.update()
                     break
         if up:
@@ -434,5 +466,6 @@ def playing(btn1):
 
 def math():
     return False
+
 starter()
 menu()
