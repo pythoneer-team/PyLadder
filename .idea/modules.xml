@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Snakes-and-Ladders.iml" filepath="$PROJECT_DIR$/.idea/Snakes-and-Ladders.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PyLadder.iml" filepath="$PROJECT_DIR$/.idea/PyLadder.iml" />
     </modules>
   </component>
 </project>

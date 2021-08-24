@@ -9,14 +9,12 @@ pygame.init()
 width = 1366
 height = 768
 
-
 # Icon layout and caption
 icon = pygame.image.load("assets/icon.jpg")
 game_layout = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Pyladder Game")
 pygame.display.set_icon(icon)
 pygame.display.update()
-
 
 Board = pygame.image.load("assets/Snakes_ladders_big_image.png")
 Menu = pygame.image.load("assets/menu.jpg")
@@ -47,10 +45,25 @@ dice4 = pygame.image.load("assets/dice_image4.png")
 dice5 = pygame.image.load("assets/dice_image5.png")
 dice6 = pygame.image.load("assets/dice_image6.png")
 
+# Sounds
+pygame.mixer.music.load("sound/song1.wav") # And menu first line
+snake_sound = pygame.mixer.Sound("sound/snake2.wav")
+ladder_sound = pygame.mixer.Sound("sound/ladder2.wav")
+win_sound = pygame.mixer.Sound("sound/win1.wav")
+lose_sound = pygame.mixer.Sound("sound/loss3.wav")
+dice_sound = pygame.mixer.Sound("sound/dice1.wav")
+
+# img Win & loss
+wins_player = pygame.image.load("assets/wins_player.png")
+loss_player = pygame.image.load("assets/loss_player.png")
+wins_computer = pygame.image.load("assets/wins_computer.png")
+loss_computer = pygame.image.load("assets/loss_computer.png")
+
 # Position of mouse
 mouse = pygame.mouse.get_pos()
 
-
+# Last Question
+last_question = []
 # prompt text when player/computer wins the game , or when a player cant move due to movments being higher than 100  
 def display_text(text, x, y, fontsize):
     Textsize = pygame.font.SysFont("ravie", fontsize)
@@ -250,7 +263,7 @@ def starter():
     # while pygame.time.get_ticks() - time_clock < 2500:
     #     game_layout.blit(back1, (0, 0))
     #     pygame.display.update()
-        # note we may reomve this one 
+        # note we may reomve this one
     # while True:
     #     time_clock = pygame.time.get_ticks()
     #     while pygame.time.get_ticks() - time_clock < 500:
@@ -268,7 +281,7 @@ def starter():
     #     while pygame.time.get_ticks() - time_clock < 500:
     #         game_layout.blit(back5, (0, 0))
     #         pygame.display.update()
-
+    #
     #     for event in pygame.event.get():
     #         if event.type == pygame.KEYDOWN:
     #             return
@@ -287,6 +300,7 @@ def ASAC():
         pygame.display.update()
 # Main Menu of our game
 def menu():
+    pygame.mixer.music.play(-1)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -328,7 +342,8 @@ def chosen():
 def turn(score, go_up, swallowed,rounds):
     # roll a dice using random number between 1 and 6
     d = randint(1, 6) 
-    print(type(d))
+    # print(type(d))
+    pygame.mixer.Sound.play(dice_sound)
     if d != 6:
         dice(d,rounds)
         six = False
@@ -345,11 +360,13 @@ def turn(score, go_up, swallowed,rounds):
         ladd_score = ladders(score)  # checking for ladders for player
         if ladd_score != score:
             go_up = True
+            pygame.mixer.Sound.play(ladder_sound)
             clock = pygame.time.get_ticks()
             score = ladd_score
         snake_score = snakes(score)
         if snake_score != score:  
             swallowed = True
+            pygame.mixer.Sound.play(snake_sound)
             score = snake_score
     # if score is not grater than 100
     else:  
@@ -388,7 +405,7 @@ def playing(btn1):
                     Quit()
         green_color=(113, 207, 41, 1)
         light_green_color=(0, 230, 0)
-        print(btn1)
+        # print(btn1)
         if btn1:
             if button("Click to Roll", mouse[0], mouse[1], 70, 138, 300, 50, green_color, light_green_color, 30,btn1):
                 if rounds == 1:
@@ -400,6 +417,13 @@ def playing(btn1):
                         time = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time < 2500:
                             display_text("Congratulations You WON !", 1000, 50, 50)
+                            pygame.mixer.music.pause()
+                            while pygame.time.get_ticks() - time < 2500:
+                                game_layout.blit(wins_player, (-5, height / 2 - 100))
+                                game_layout.blit(loss_computer, (width - 120, height / 2))
+                                pygame.display.update()
+                                pygame.mixer.Sound.play(win_sound)
+                            pygame.mixer.music.unpause()
                             pygame.display.update()
                         break
             game_layout.blit(red_token, (comp_x_c ,comp_y_c ))
@@ -417,6 +441,13 @@ def playing(btn1):
                     time_clock = pygame.time.get_ticks()
                     while pygame.time.get_ticks() - time_clock < 2000:
                         display_text("Computer Wins !", 1066, 50, 50)
+                        pygame.mixer.music.pause()
+                        while pygame.time.get_ticks() - time_clock < 2500:
+                            game_layout.blit(wins_computer, (width - 250, height / 2 - 100))
+                            game_layout.blit(loss_player, (-5, height / 2))
+                            pygame.display.update()
+                            pygame.mixer.Sound.play(lose_sound)
+                        pygame.mixer.music.unpause()
                         pygame.display.update()
                     break
         if up:
@@ -432,7 +463,98 @@ def playing(btn1):
         clock.tick()
         pygame.display.update()
 
+
 def math():
-    return False
+    font = pygame.font.Font(None, 32)
+    input_box = pygame.Rect(585, 570, 140, 32)
+
+    questions = [["assets/question/q1.jpg", '15'],
+                 ["assets/question/q2.jpg", '15'],
+                 ["assets/question/q3.jpg", '15'],
+                 ["assets/question/q4.jpg", '15'],
+                 ["assets/question/q5.jpg", '15'],
+                 ["assets/question/q6.jpg", '15'],
+                 ["assets/question/q7.jpg", '15'],
+                 ["assets/question/q8.jpg", '15'],
+                 ["assets/question/q9.jpg", '15'],
+                 ["assets/question/q10.jpg", '15'],
+                 ["assets/question/q11.jpg", '15'],
+                 ["assets/question/q12.jpg", '15'],
+                 ["assets/question/q13.jpg", '15'],
+                 ["assets/question/q14.jpg", '15'],
+                 ["assets/question/q15.jpg", '15'],
+                 ["assets/question/q16.jpg", '15'],
+                 ["assets/question/q17.jpg", '15'],
+                 ["assets/question/q18.jpg", '15']]
+    read_q = randint(0, 17)
+
+    get_question = True
+
+    while get_question:
+        if questions[read_q][0] in last_question:
+            read_q = randint(0, 17)
+        else:
+            last_question.append(questions[read_q][0])
+            get_question = False
+    print(last_question)
+    question = pygame.image.load(questions[read_q][0])
+    answer = questions[read_q][1]
+
+    color_inactive = pygame.Color('lightskyblue3')
+    color_active = pygame.Color('dodgerblue2')
+    color = color_inactive
+
+    active = False
+    text = ''
+    done = False
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                Quit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # If the user clicked on the input_box rect.
+                if input_box.collidepoint(event.pos):
+                    # Toggle the active variable.
+                    active = not active
+                else:
+                    active = False
+                # Change the current color of the input box.
+                color = color_active if active else color_inactive
+            if event.type == pygame.KEYDOWN:
+                if active:
+                    if event.key == pygame.K_RETURN:
+                        # check if the player answer the question
+                        if text:
+                            if text == answer:
+                                return True
+                            else:
+                                return False
+                    elif event.key == pygame.K_BACKSPACE:
+                        text = text[:-1]
+                    else:
+                        # x = re.findall('\d', text)
+                        # if x :
+                            text += event.unicode
+                        # print(x)
+    pygame.draw.rect(game_layout, (30, 30, 30), pygame.Rect(433, 134, 500, 500))
+    game_layout.blit(question, (433, 134))
+
+    # Render the current text.
+    txt_surface = font.render(text, True, color)
+
+    # Resize the box if the text is too long.
+    width_box = max(200, txt_surface.get_width()+10)
+
+    input_box.w = width_box
+
+    # Blit the text.
+    game_layout.blit(txt_surface, (input_box.x+5, input_box.y+5))
+
+    # Blit the input_box rect.
+    pygame.draw.rect(game_layout, color, input_box, 2)
+
+    pygame.display.update()
+
 starter()
 menu()
