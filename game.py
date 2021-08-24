@@ -395,12 +395,6 @@ def playing(btn1):
                     if not six:
                         rounds += 1
                     # to add code for user when winning dina
-                    if player1_score== 100:
-                        clock = pygame.time.get_ticks()
-                        while pygame.time.get_ticks() - clock < 2500:
-                            display_text("Congratulations You WON", 1000, 50, 50)
-                            pygame.display.update()
-                        break
             game_layout.blit(red_token, (comp_x_c ,comp_y_c ))
             if btn1 == 21:
                 game_layout.blit(blue_token, (player1_x_c + 2, player1_y_c))
@@ -412,21 +406,21 @@ def playing(btn1):
                     rounds += 1
                     if btn1 == 21:
                         rounds = 1
+                    # to add code for computer when winning maram
                     if computer_score == 100:
-                        clock = pygame.time.get_ticks()
-                        while pygame.time.get_ticks() - clock < 2000:
+                        time = pygame.time.get_ticks()
+                        while pygame.time.get_ticks() - time < 2000:
                             display_text("Computer Wins", 1066, 50, 50)
                             pygame.display.update()
                         break
-
         if up:
-            clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - clock < 1000:
+            time = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - time < 1000:
                 display_text2("To use the ladder:Please answer a simple question", 700, 50, 35, (250, 250, 250))
                 pygame.display.update()
         if down:
-            clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - clock < 1000:
+            time = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - time < 1000:
                 display_text2("To avoid a Snake:Please answer a simple question", 750, 50, 35, (250, 250, 250))
                 pygame.display.update()
         clock.tick()
