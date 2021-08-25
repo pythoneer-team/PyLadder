@@ -498,12 +498,12 @@ def math(rounds):
                     ["../assets/question/q15.jpg", '51'],
                     ["../assets/question/q16.jpg", '9'],
                     ["../assets/question/q17.jpg", '7']]
-        read_q = randint(0, 17)
+        read_q = randint(0, 16)
         get_question = True
 
         while get_question:
             if questions[read_q][0] in last_question:
-                read_q = randint(0, 17)
+                read_q = randint(0, 16)
             else:
                 last_question.append(questions[read_q][0])
                 get_question = False
@@ -573,7 +573,7 @@ def math(rounds):
     else: 
         # computer will have 50/50 chance to have a correct answer
         computer_answer = randint(0,1)
-        print(computer_answer)
+        # print(computer_answer)
         if  computer_answer==0:
             return False
         else:
