@@ -458,7 +458,7 @@ def playing(btn1):
                     rounds += 1
                     if btn1 == 10:
                         rounds = 1
-                computer_score == 100
+                # computer_score == 100
                 if computer_score == 100:
                     time_clock = pygame.time.get_ticks()
                     while pygame.time.get_ticks() - time_clock < 500:

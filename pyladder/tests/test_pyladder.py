@@ -1,5 +1,5 @@
 from pyladder import __version__
-
+from pyladder.pyladder import *
 
 
 def test_version():
@@ -7,6 +7,7 @@ def test_version():
 
 #######################################################################
 
+
 def test_score():
-    pass
+    playing(10)
 
