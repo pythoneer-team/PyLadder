@@ -304,7 +304,7 @@ def ASAC():
         pygame.display.update()
 # Main Menu of our game
 def menu():
-    pygame.mixer.music.play(-1)
+    # pygame.mixer.music.play(-1)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
