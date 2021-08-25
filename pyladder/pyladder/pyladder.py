@@ -476,6 +476,7 @@ def playing(btn1):
         pygame.display.update()
 
 
+
 def math(rounds):
     if rounds == 1:
         font = pygame.font.Font(None, 32)
@@ -484,7 +485,7 @@ def math(rounds):
         questions = [["../assets/question/q1.jpg", '96'],
                     ["../assets/question/q2.jpg", '111'],
                     ["../assets/question/q3.jpg", '72'],
-                    ["../assets/question/q4.png", '255'],
+                    ["../assets/question/q4.png", '225'],
                     ["../assets/question/q5.jpg", '9'],
                     ["../assets/question/q6.png", '86'],
                     ["../assets/question/q7.png", '23'],
@@ -498,7 +499,7 @@ def math(rounds):
                     ["../assets/question/q15.jpg", '51'],
                     ["../assets/question/q16.jpg", '9'],
                     ["../assets/question/q17.jpg", '7']]
-                    
+
         read_q = randint(0, 16)
         get_question = True
 
@@ -571,7 +572,7 @@ def math(rounds):
             pygame.draw.rect(game_layout, color, input_box, 2)
             pygame.display.update()
             game_layout.blit(Board, (width / 2 - 250, height / 2 - 250))
-    else: 
+    else:
         # computer will have 50/50 chance to have a correct answer
         computer_answer = randint(0,1)
         # print(computer_answer)
