@@ -403,8 +403,8 @@ def playing(btn1):
     comp_y_c = 606 - 25
     game_layout.blit(red_token, (comp_x_c, comp_y_c))
     game_layout.blit(blue_token, (player1_x_c, player1_y_c))
-    player1_score = 0
-    computer_score = 0
+    player1_score = 92
+    computer_score = 90
     rounds = 1
     while True:
         up=False
@@ -425,58 +425,59 @@ def playing(btn1):
         
         # print(btn1)
         if btn1:
-            if button("Click to Roll", mouse[0], mouse[1], 50, 138, 350, 50, green_color, light_green_color, 40, btn1):
-                if rounds == 1:
-                    player1_score, up, down, six = turn(player1_score, up, down,rounds)
-                    # tempx,tempy=player1_x_c, player1_y_c
-                    player1_x_c, player1_y_c = moving(player1_score)
-                    if not six:
-                        rounds += 1  
-                    if player1_score == 100:
-                        time = pygame.time.get_ticks()
-                        while pygame.time.get_ticks() - time < 2500:
-                            display_text("Congratulations You WON !", 700, 50, 60)
-                            pygame.mixer.music.pause()
-                            while pygame.time.get_ticks() - time < 500:
-                                game_layout.blit(wins_player, (-5, height / 2 +70))
-                                game_layout.blit(loss_computer, (width - 120, height / 2+70))
+            if computer_score ==100 or player1_score==100:
+                if button("Back", mouse[0], mouse[1], width / 2 - 120, 680, 200, 70, (168, 50, 50,1), (168, 55, 50,50), 60, 2):
+                    menu()
+            else:
+                if button("Click to Roll", mouse[0], mouse[1], 50, 138, 350, 50, green_color, light_green_color, 40, btn1):
+                    if rounds == 1:
+                        player1_score, up, down, six = turn(player1_score, up, down,rounds)
+                        # tempx,tempy=player1_x_c, player1_y_c
+                        player1_x_c, player1_y_c = moving(player1_score)
+                        if not six:
+                            rounds += 1  
+                        if player1_score == 100:
+                            time = pygame.time.get_ticks()
+                            while pygame.time.get_ticks() - time < 2500:
+                                display_text("Congratulations You WON !", 700, 50, 60)
+                                pygame.mixer.music.pause()
+                                while pygame.time.get_ticks() - time < 500:
+                                    game_layout.blit(wins_player, (-5, height / 2 +70))
+                                    game_layout.blit(loss_computer, (width - 120, height / 2+70))
+                                    pygame.display.update()
+                                    pygame.mixer.Sound.play(win_sound)
+                                pygame.mixer.music.unpause()
                                 pygame.display.update()
-                                pygame.mixer.Sound.play(win_sound)
-                            pygame.mixer.music.unpause()
-                            pygame.display.update()
-            if button("Back", mouse[0], mouse[1], width / 2 - 120, 680, 200, 70, (168, 50, 50,1), (168, 55, 50,50), 60, 2):
-                menu()
-                        
-                        
-            
+                                break
             game_layout.blit(red_token, (comp_x_c ,comp_y_c ))
             if btn1 == 10:
                     game_layout.blit(blue_token, (player1_x_c + 2, player1_y_c))
-
-            button("Computer", mouse[0], mouse[1], 1050, 138, 220, 50, green_color, light_green_color, 40,btn1)
-            if rounds == 2:
-                computer_score, up, down, six = turn(computer_score, up, down,rounds)
-                comp_x_c, comp_y_c = moving(computer_score)
-                if not six:
-                    rounds += 1
-                    if btn1 == 10:
-                        rounds = 1
-                # computer_score == 100
-                if computer_score == 100:
-                    time_clock = pygame.time.get_ticks()
-                    while pygame.time.get_ticks() - time_clock < 500:
-                        display_text("Computer Won !", 1066, 50, 60)
-                        pygame.mixer.music.pause()
-                        while pygame.time.get_ticks() - time_clock < 2500:
-                            game_layout.blit(wins_computer, (width - 250, height / 2 + 70))
-                            game_layout.blit(loss_player, (-5, height / 2 +70))
+            if computer_score ==100 or player1_score==100:
+                if button("Back", mouse[0], mouse[1], width / 2 - 120, 680, 200, 70, (168, 50, 50,1), (168, 55, 50,50), 60, 2):
+                    menu()
+            else:
+                button("Computer", mouse[0], mouse[1], 1050, 138, 220, 50, green_color, light_green_color, 40,btn1)
+                if rounds == 2:
+                    computer_score, up, down, six = turn(computer_score, up, down,rounds)
+                    comp_x_c, comp_y_c = moving(computer_score)
+                    if not six:
+                        rounds += 1
+                        if btn1 == 10:
+                            rounds = 1
+                    if computer_score == 100:
+                        time_clock = pygame.time.get_ticks()
+                        while pygame.time.get_ticks() - time_clock < 500:
+                            display_text("Computer Won !", 1066, 50, 60)
+                            pygame.mixer.music.pause()
+                            while pygame.time.get_ticks() - time_clock < 2500:
+                                game_layout.blit(wins_computer, (width - 250, height / 2 + 70))
+                                game_layout.blit(loss_player, (-5, height / 2 +70))
+                                pygame.display.update()
+                                pygame.mixer.Sound.play(lose_sound)
+                            pygame.mixer.music.unpause()
                             pygame.display.update()
-                            pygame.mixer.Sound.play(lose_sound)
-                        pygame.mixer.music.unpause()
-                        pygame.display.update()
-            if button("Back", mouse[0], mouse[1], width / 2 - 120, 680, 200, 70, (168, 50, 50,1), (168, 55, 50,50), 60, 2):
-                menu()
-                         
+                            break
+                
         clock.tick()
         pygame.display.update()
 
