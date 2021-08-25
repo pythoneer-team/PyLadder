@@ -494,7 +494,7 @@ def math(rounds):
                     ["./pyladder/assets/question/q4.png", '225'],
                     ["./pyladder/assets/question/q5.jpg", '9'],
                     ["./pyladder/assets/question/q6.png", '86'],
-                    ["./pyladder/assets/question/q7.png", '23'],
+                    ["./pyladder/assets/question/q7.png", '13'],
                     ["./pyladder/assets/question/q8.jpg", '6'],
                     ["./pyladder/assets/question/q9.jpg", '12'],
                     ["./pyladder/assets/question/q10.jpg", '5'],
