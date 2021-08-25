@@ -403,8 +403,8 @@ def playing(btn1):
     comp_y_c = 606 - 25
     game_layout.blit(red_token, (comp_x_c, comp_y_c))
     game_layout.blit(blue_token, (player1_x_c, player1_y_c))
-    player1_score = 92
-    computer_score = 90
+    player1_score = 0
+    computer_score = 0
     rounds = 1
     while True:
         up=False
