@@ -498,6 +498,7 @@ def math(rounds):
                     ["../assets/question/q15.jpg", '51'],
                     ["../assets/question/q16.jpg", '9'],
                     ["../assets/question/q17.jpg", '7']]
+                    
         read_q = randint(0, 16)
         get_question = True
 
