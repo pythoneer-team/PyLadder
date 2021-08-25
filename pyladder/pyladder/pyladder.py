@@ -12,55 +12,55 @@ height = 768
 
 
 # Icon layout and caption
-icon = pygame.image.load("../assets/icon.jpg")
+icon = pygame.image.load("./pyladder/assets/icon.jpg")
 game_layout = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Pyladder Game")
 pygame.display.set_icon(icon)
 pygame.display.update()
 
 
-Board = pygame.image.load("../assets/Snakes_ladders_big_image.png")
-Menu = pygame.image.load("../assets/menu.jpg")
-Background = pygame.image.load("../assets/game_background.jpg")
-ourrules = pygame.image.load("../assets/rules.png")
+Board = pygame.image.load("./pyladder/assets/Snakes_ladders_big_image.png")
+Menu = pygame.image.load("./pyladder/assets/menu.jpg")
+Background = pygame.image.load("./pyladder/assets/game_background.jpg")
+ourrules = pygame.image.load("./pyladder/assets/rules.png")
 ourrules = pygame.transform.smoothscale(ourrules, (width, height))
-back1 = pygame.image.load("../assets/introduction_image.png")
-back2 = pygame.image.load("../assets/introduction_image2.png")
-back3 = pygame.image.load("../assets/introduction_image3.png")
-back4 = pygame.image.load("../assets/introduction_image4.png")
-back5 = pygame.image.load("../assets/introduction_image5.png")
+back1 = pygame.image.load("./pyladder/assets/introduction_image.png")
+back2 = pygame.image.load("./pyladder/assets/introduction_image2.png")
+back3 = pygame.image.load("./pyladder/assets/introduction_image3.png")
+back4 = pygame.image.load("./pyladder/assets/introduction_image4.png")
+back5 = pygame.image.load("./pyladder/assets/introduction_image5.png")
 
-asac_project = pygame.image.load("../assets/ASAC.png")
+asac_project = pygame.image.load("./pyladder/assets/ASAC.png")
 asac_project = pygame.transform.smoothscale(asac_project, (width, height))
 
 # All Point
-red_token = pygame.image.load("../assets/robot.png")
+red_token = pygame.image.load("./pyladder/assets/robot.png")
 red_token = pygame.transform.smoothscale(red_token, (55, 53))
 
-blue_token = pygame.image.load("../assets/man.png")
+blue_token = pygame.image.load("./pyladder/assets/man.png")
 blue_token = pygame.transform.smoothscale(blue_token, (55, 52))
 
 # All Dice
-dice1 = pygame.image.load("../assets/dice_image1.png")
-dice2 = pygame.image.load("../assets/dice_image2.png")
-dice3 = pygame.image.load("../assets/dice_image3.png")
-dice4 = pygame.image.load("../assets/dice_image4.png")
-dice5 = pygame.image.load("../assets/dice_image5.png")
-dice6 = pygame.image.load("../assets/dice_image6.png")
+dice1 = pygame.image.load("./pyladder/assets/dice_image1.png")
+dice2 = pygame.image.load("./pyladder/assets/dice_image2.png")
+dice3 = pygame.image.load("./pyladder/assets/dice_image3.png")
+dice4 = pygame.image.load("./pyladder/assets/dice_image4.png")
+dice5 = pygame.image.load("./pyladder/assets/dice_image5.png")
+dice6 = pygame.image.load("./pyladder/assets/dice_image6.png")
 
 # Sounds
-pygame.mixer.music.load("../sound/song1.wav") # And menu first line
-snake_sound = pygame.mixer.Sound("../sound/snake2.wav")
-ladder_sound = pygame.mixer.Sound("../sound/ladder2.wav")
-win_sound = pygame.mixer.Sound("../sound/win1.wav")
-lose_sound = pygame.mixer.Sound("../sound/loss3.wav")
-dice_sound = pygame.mixer.Sound("../sound/dice1.wav")
+pygame.mixer.music.load("./pyladder/sound/song1.wav") # And menu first line
+snake_sound = pygame.mixer.Sound("./pyladder/sound/snake2.wav")
+ladder_sound = pygame.mixer.Sound("./pyladder/sound/ladder2.wav")
+win_sound = pygame.mixer.Sound("./pyladder/sound/win1.wav")
+lose_sound = pygame.mixer.Sound("./pyladder/sound/loss3.wav")
+dice_sound = pygame.mixer.Sound("./pyladder/sound/dice1.wav")
 
 # img Win & loss
-wins_player = pygame.image.load("../assets/wins_player.png")
-loss_player = pygame.image.load("../assets/loss_player.png")
-wins_computer = pygame.image.load("../assets/wins_computer.png")
-loss_computer = pygame.image.load("../assets/loss_computer.png")
+wins_player = pygame.image.load("./pyladder/assets/wins_player.png")
+loss_player = pygame.image.load("./pyladder/assets/loss_player.png")
+wins_computer = pygame.image.load("./pyladder/assets/wins_computer.png")
+loss_computer = pygame.image.load("./pyladder/assets/loss_computer.png")
 
 # Position of mouse
 mouse = pygame.mouse.get_pos()
@@ -403,8 +403,8 @@ def playing(btn1):
     comp_y_c = 606 - 25
     game_layout.blit(red_token, (comp_x_c, comp_y_c))
     game_layout.blit(blue_token, (player1_x_c, player1_y_c))
-    player1_score = 0
-    computer_score = 0
+    player1_score = 99
+    computer_score = 99
     rounds = 1
     while True:
         up=False
@@ -437,14 +437,14 @@ def playing(btn1):
                         while pygame.time.get_ticks() - time < 2500:
                             display_text("Congratulations You WON !", 700, 50, 60)
                             pygame.mixer.music.pause()
-                            while pygame.time.get_ticks() - time < 50:
+                            while pygame.time.get_ticks() - time < 00:
                                 game_layout.blit(wins_player, (-5, height / 2 +70))
                                 game_layout.blit(loss_computer, (width - 120, height / 2+70))
                                 pygame.display.update()
                                 pygame.mixer.Sound.play(win_sound)
                             pygame.mixer.music.unpause()
                             pygame.display.update()
-                        break
+                        
             
             game_layout.blit(red_token, (comp_x_c ,comp_y_c ))
             if btn1 == 10:
@@ -461,7 +461,7 @@ def playing(btn1):
                 computer_score == 100
                 if computer_score == 100:
                     time_clock = pygame.time.get_ticks()
-                    while pygame.time.get_ticks() - time_clock < 500:
+                    while pygame.time.get_ticks() - time_clock < 5000:
                         display_text("Computer Won !", 1066, 50, 60)
                         pygame.mixer.music.pause()
                         while pygame.time.get_ticks() - time_clock < 2500:
@@ -471,7 +471,7 @@ def playing(btn1):
                             pygame.mixer.Sound.play(lose_sound)
                         pygame.mixer.music.unpause()
                         pygame.display.update()
-                    break        
+                     
         clock.tick()
         pygame.display.update()
 
@@ -481,23 +481,23 @@ def math(rounds):
         font = pygame.font.Font(None, 32)
         input_box = pygame.Rect(585, 570, 140, 32)
 
-        questions = [["../assets/question/q1.jpg", '96'],
-                    ["../assets/question/q2.jpg", '111'],
-                    ["../assets/question/q3.jpg", '72'],
-                    ["../assets/question/q4.png", '255'],
-                    ["../assets/question/q5.jpg", '9'],
-                    ["../assets/question/q6.png", '86'],
-                    ["../assets/question/q7.png", '23'],
-                    ["../assets/question/q8.jpg", '6'],
-                    ["../assets/question/q9.jpg", '12'],
-                    ["../assets/question/q10.jpg", '5'],
-                    ["../assets/question/q11.jpg", '25'],
-                    ["../assets/question/q12.jpg", '16'],
-                    ["../assets/question/q13.jpg", '16'],
-                    ["../assets/question/q14.jpg", '45'],
-                    ["../assets/question/q15.jpg", '51'],
-                    ["../assets/question/q16.jpg", '9'],
-                    ["../assets/question/q17.jpg", '7']]
+        questions = [["./pyladder/assets/question/q1.jpg", '96'],
+                    ["./pyladder/assets/question/q2.jpg", '111'],
+                    ["./pyladder/assets/question/q3.jpg", '72'],
+                    ["./pyladder/assets/question/q4.png", '255'],
+                    ["./pyladder/assets/question/q5.jpg", '9'],
+                    ["./pyladder/assets/question/q6.png", '86'],
+                    ["./pyladder/assets/question/q7.png", '23'],
+                    ["./pyladder/assets/question/q8.jpg", '6'],
+                    ["./pyladder/assets/question/q9.jpg", '12'],
+                    ["./pyladder/assets/question/q10.jpg", '5'],
+                    ["./pyladder/assets/question/q11.jpg", '25'],
+                    ["./pyladder/assets/question/q12.jpg", '16'],
+                    ["./pyladder/assets/question/q13.jpg", '16'],
+                    ["./pyladder/assets/question/q14.jpg", '45'],
+                    ["./pyladder/assets/question/q15.jpg", '51'],
+                    ["./pyladder/assets/question/q16.jpg", '9'],
+                    ["./pyladder/assets/question/q17.jpg", '7']]
         read_q = randint(0, 17)
         get_question = True
 
