@@ -488,6 +488,7 @@ def playing(btn1):
 
 
 def math(rounds):
+    
     if rounds == 1:
         font = pygame.font.Font(None, 32)
         input_box = pygame.Rect(585, 570, 140, 32)
