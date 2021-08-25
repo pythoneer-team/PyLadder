@@ -471,14 +471,14 @@ def math():
     font = pygame.font.Font(None, 32)
     input_box = pygame.Rect(585, 570, 140, 32)
 
-    questions = [["assets/question/q1.jpg", '15'],
-                 ["assets/question/q2.jpg", '15'],
-                 ["assets/question/q3.jpg", '15'],
-                 ["assets/question/q4.jpg", '15'],
-                 ["assets/question/q5.jpg", '15'],
+    questions = [["assets/question/q1.jpg", '96'],
+                 ["assets/question/q2.jpg", '111'],
+                 ["assets/question/q3.jpg", '72'],
+                 ["assets/question/q4.jpg", '28'],
+                 ["assets/question/q5.jpg", '336'],
                  ["assets/question/q6.jpg", '15'],
                  ["assets/question/q7.jpg", '15'],
-                 ["assets/question/q8.jpg", '15'],
+                 ["assets/question/q8.jpg", '6'],
                  ["assets/question/q9.jpg", '15'],
                  ["assets/question/q10.jpg", '15'],
                  ["assets/question/q11.jpg", '15'],
