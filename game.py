@@ -34,11 +34,11 @@ asac_project = pygame.image.load("assets/ASAC.png")
 asac_project = pygame.transform.smoothscale(asac_project, (width, height))
 
 # All Point
-red_token = pygame.image.load("assets/red.png")
-red_token = pygame.transform.smoothscale(red_token, (36, 51))
+red_token = pygame.image.load("assets/robot.png")
+red_token = pygame.transform.smoothscale(red_token, (55, 53))
 
-blue_token = pygame.image.load("assets/blue.png")
-blue_token = pygame.transform.smoothscale(blue_token, (36, 51))
+blue_token = pygame.image.load("assets/man.png")
+blue_token = pygame.transform.smoothscale(blue_token, (55, 52))
 
 # All Dice
 dice1 = pygame.image.load("assets/dice_image1.png")
@@ -304,7 +304,7 @@ def ASAC():
         pygame.display.update()
 # Main Menu of our game
 def menu():
-    # pygame.mixer.music.play(-1)
+    pygame.mixer.music.play(-1)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -484,24 +484,23 @@ def math(rounds):
         font = pygame.font.Font(None, 32)
         input_box = pygame.Rect(585, 570, 140, 32)
 
-        questions = [["assets/question/q1.jpg", '15'],
-                    ["assets/question/q2.jpg", '15'],
-                    ["assets/question/q3.jpg", '15'],
-                    ["assets/question/q4.jpg", '15'],
-                    ["assets/question/q5.jpg", '15'],
-                    ["assets/question/q6.jpg", '15'],
-                    ["assets/question/q7.jpg", '15'],
-                    ["assets/question/q8.jpg", '15'],
-                    ["assets/question/q9.jpg", '15'],
-                    ["assets/question/q10.jpg", '15'],
-                    ["assets/question/q11.jpg", '15'],
-                    ["assets/question/q12.jpg", '15'],
-                    ["assets/question/q13.jpg", '15'],
-                    ["assets/question/q14.jpg", '15'],
-                    ["assets/question/q15.jpg", '15'],
-                    ["assets/question/q16.jpg", '15'],
-                    ["assets/question/q17.jpg", '15'],
-                    ["assets/question/q18.jpg", '15']]
+        questions = [["assets/question/q1.jpg", '96'],
+                    ["assets/question/q2.jpg", '111'],
+                    ["assets/question/q3.jpg", '72'],
+                    ["assets/question/q4.png", '255'],
+                    ["assets/question/q5.jpg", '9'],
+                    ["assets/question/q6.png", '86'],
+                    ["assets/question/q7.png", '23'],
+                    ["assets/question/q8.jpg", '6'],
+                    ["assets/question/q9.jpg", '12'],
+                    ["assets/question/q10.jpg", '5'],
+                    ["assets/question/q11.jpg", '25'],
+                    ["assets/question/q12.jpg", '16'],
+                    ["assets/question/q13.jpg", '16'],
+                    ["assets/question/q14.jpg", '45'],
+                    ["assets/question/q15.jpg", '51'],
+                    ["assets/question/q16.jpg", '9'],
+                    ["assets/question/q17.jpg", '7']]
         read_q = randint(0, 17)
         get_question = True
 
