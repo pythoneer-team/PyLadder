@@ -499,7 +499,7 @@ def math(rounds):
                     ["../assets/question/q4.png", '225'],
                     ["../assets/question/q5.jpg", '9'],
                     ["../assets/question/q6.png", '86'],
-                    ["../assets/question/q7.png", '23'],
+                    ["../assets/question/q7.png", '13'],
                     ["../assets/question/q8.jpg", '6'],
                     ["../assets/question/q9.jpg", '12'],
                     ["../assets/question/q10.jpg", '5'],
