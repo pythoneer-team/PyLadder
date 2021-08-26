@@ -1,5 +1,6 @@
 # Importing
 import pygame
+import re
 from random import randint
 
 clock = pygame.time.Clock()
@@ -33,11 +34,11 @@ asac_project = pygame.image.load("assets/ASAC.png")
 asac_project = pygame.transform.smoothscale(asac_project, (width, height))
 
 # All Point
-red_token = pygame.image.load("assets/red.png")
-red_token = pygame.transform.smoothscale(red_token, (36, 51))
+red_token = pygame.image.load("assets/robot.png")
+red_token = pygame.transform.smoothscale(red_token, (55, 53))
 
-blue_token = pygame.image.load("assets/blue.png")
-blue_token = pygame.transform.smoothscale(blue_token, (36, 51))
+blue_token = pygame.image.load("assets/man.png")
+blue_token = pygame.transform.smoothscale(blue_token, (55, 52))
 
 # All Dice
 dice1 = pygame.image.load("assets/dice_image1.png")
@@ -47,13 +48,29 @@ dice4 = pygame.image.load("assets/dice_image4.png")
 dice5 = pygame.image.load("assets/dice_image5.png")
 dice6 = pygame.image.load("assets/dice_image6.png")
 
+# Sounds
+pygame.mixer.music.load("sound/song1.wav") # And menu first line
+snake_sound = pygame.mixer.Sound("sound/snake2.wav")
+ladder_sound = pygame.mixer.Sound("sound/ladder2.wav")
+win_sound = pygame.mixer.Sound("sound/win1.wav")
+lose_sound = pygame.mixer.Sound("sound/loss3.wav")
+dice_sound = pygame.mixer.Sound("sound/dice1.wav")
+
+# img Win & loss
+wins_player = pygame.image.load("assets/wins_player.png")
+loss_player = pygame.image.load("assets/loss_player.png")
+wins_computer = pygame.image.load("assets/wins_computer.png")
+loss_computer = pygame.image.load("assets/loss_computer.png")
+
 # Position of mouse
 mouse = pygame.mouse.get_pos()
 
+# Last Question
+last_question = []
 
 # prompt text when player/computer wins the game , or when a player cant move due to movments being higher than 100  
 def display_text(text, x, y, fontsize):
-    Textsize = pygame.font.SysFont("ravie", fontsize)
+    Textsize = pygame.font.SysFont("couriernew", fontsize)
     Texts, TextBox = text_reshape(text, Textsize)
     TextBox.center = (x, y)
     game_layout.blit(Texts, TextBox)
@@ -92,44 +109,44 @@ def moving(a):
     return x, y
 
 # Ladder check maram
-def ladders(x):
+def ladders(x,rounds):
     if x == 1:
-        if math():
+        if math(rounds):
             return 38
         else:
             return 1
     elif x == 4:
-        if math():
+        if math(rounds):
             return 14
         else:
-            return 14
+            return 4
     elif x == 9:
-        if math():
+        if math(rounds):
             return 31
         else:
             return 9
     elif x == 28:
-        if math():
+        if math(rounds):
             return 84
         else:
             return 28
     elif x == 21:
-        if math():
+        if math(rounds):
             return 42
         else:
             return 21
     elif x == 51:
-        if math():
+        if math(rounds):
             return 67
         else:
             return 51
     elif x == 80:
-        if math():
+        if math(rounds):
             return 99
         else:
             return 80 
     elif x == 72:
-        if math():
+        if math(rounds):
             return 91
         else:
             return 72
@@ -137,44 +154,44 @@ def ladders(x):
         return x
 
 # Snake Check Omar
-def snakes(x):
+def snakes(x,rounds):
     if x == 17:
-        if math():
+        if math(rounds):
             return 17
         else:
             return 7
     elif x == 54:
-        if math():
+        if math(rounds):
             return 54
         else:
             return 34
     elif x == 62:
-        if math():
+        if math(rounds):
             return 62
         else:
             return 19
     elif x == 64:
-        if math():
+        if math(rounds):
             return 64
         else:
             return 60
     elif x == 87:
-        if math():
+        if math(rounds):
             return 87
         else:    
             return 36
     elif x == 93:
-        if math():
+        if math(rounds):
             return 93
         else:   
             return 73
     elif x == 95:
-        if math():
+        if math(rounds):
             return 95
         else:  
             return 75
     elif x == 98:
-        if math():
+        if math(rounds):
             return 98
         else: 
             return 79
@@ -202,7 +219,7 @@ def dice(d,rounds):
     else:
         clock = pygame.time.get_ticks()
         while pygame.time.get_ticks() - clock < 800:
-            game_layout.blit(d, (1140, 300))
+            game_layout.blit(d, (1100, 300))
             pygame.display.update()
 
     # for mute and unmute
@@ -216,7 +233,7 @@ def button(text, xmouse, ymouse, x, y, width, height, int, new, size,btn_1):
         pygame.draw.rect(game_layout, new, [x - 2.5, y - 2.5, width + 5, height + 5])
         if pygame.mouse.get_pressed() == (1, 0, 0):
             if btn_1 == 1:
-                chosen()
+                playing(10)
             elif btn_1 == 0:
                 Quit()
             elif btn_1 == 15:
@@ -246,32 +263,32 @@ def rules():
             pygame.display.update()
 #  Game lunching
 def starter():
-    # time_clock = pygame.time.get_ticks()
-    # while pygame.time.get_ticks() - time_clock < 2500:
-    #     game_layout.blit(back1, (0, 0))
-    #     pygame.display.update()
-        # note we may reomve this one 
-    # while True:
-    #     time_clock = pygame.time.get_ticks()
-    #     while pygame.time.get_ticks() - time_clock < 500:
-    #         game_layout.blit(back2, (0, 0))
-    #         pygame.display.update()
-    #     time_clock = pygame.time.get_ticks()
-    #     while pygame.time.get_ticks() - time_clock < 500:
-    #         game_layout.blit(back3, (0, 0))
-    #         pygame.display.update()
-    #     time_clock = pygame.time.get_ticks()
-    #     while pygame.time.get_ticks() - time_clock < 500:
-    #         game_layout.blit(back4, (0, 0))
-    #         pygame.display.update()
-    #     time_clock = pygame.time.get_ticks()
-    #     while pygame.time.get_ticks() - time_clock < 500:
-    #         game_layout.blit(back5, (0, 0))
-    #         pygame.display.update()
-
-    #     for event in pygame.event.get():
-    #         if event.type == pygame.KEYDOWN:
-    #             return
+    time_clock = pygame.time.get_ticks()
+    while pygame.time.get_ticks() - time_clock < 2500:
+        game_layout.blit(back1, (0, 0))
+        pygame.display.update()
+        # note we may reomve those ones
+    while True:
+        time_clock = pygame.time.get_ticks()
+        while pygame.time.get_ticks() - time_clock < 500:
+            game_layout.blit(back2, (0, 0))
+            pygame.display.update()
+        time_clock = pygame.time.get_ticks()
+        while pygame.time.get_ticks() - time_clock < 500:
+            game_layout.blit(back3, (0, 0))
+            pygame.display.update()
+        time_clock = pygame.time.get_ticks()
+        while pygame.time.get_ticks() - time_clock < 500:
+            game_layout.blit(back4, (0, 0))
+            pygame.display.update()
+        time_clock = pygame.time.get_ticks()
+        while pygame.time.get_ticks() - time_clock < 500:
+            game_layout.blit(back5, (0, 0))
+            pygame.display.update()
+    
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                return
         pygame.display.update()
 # about our project and team members
 def ASAC():
@@ -287,6 +304,7 @@ def ASAC():
         pygame.display.update()
 # Main Menu of our game
 def menu():
+    # pygame.mixer.music.play(-1)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -296,9 +314,9 @@ def menu():
                     Quit()
         mouse = pygame.mouse.get_pos()
         game_layout.blit(Menu, (0, 0))
-        button("Play", mouse[0], mouse[1], (width / 2 - 100), height / 2, 200, 100, (113, 207, 41, 1),(0, 230, 0), 60, 1)
-        button("Rules", mouse[0], mouse[1], (width / 2 - 100), (height / 2) + 110, 200, 100, (113, 207, 41, 1),(0, 230, 0), 60, 15)                                                                          
-        button("Quit", mouse[0], mouse[1], (width / 2 - 100), (height / 2) + 220, 200, 100, (113, 207, 41, 1),(0, 230, 0), 60, 0)
+        button("Play", mouse[0], mouse[1], (width / 2 - 100), 330, 200, 100, (113, 207, 41, 1),(0, 230, 0), 60, 1)
+        button("Rules", mouse[0], mouse[1], (width / 2 - 100), 370 + 70, 200, 100, (113, 207, 41, 1),(0, 230, 0), 60, 15)                                                                          
+        button("Quit", mouse[0], mouse[1], (width / 2 - 100), 440 + 110, 200, 100, (113, 207, 41, 1),(0, 230, 0), 60, 0)
         mouse = pygame.mouse.get_pos()
         if button("PyLadder", mouse[0], mouse[1], 1166, 0, 200, 50, (113, 207, 41, 1),(0, 230, 0), 30,2):
             ASAC()
@@ -315,49 +333,65 @@ def chosen():
         mouse = pygame.mouse.get_pos()
         game_layout.blit(Menu, (0, 0))
         # Single player button
-        btn_1 = button("Single Player Against Computer", mouse[0], mouse[1], (330),400,750,100,(113, 207, 41, 1),
+        btn_1 = button("Against Computer", mouse[0], mouse[1], (330),400,750,100,(113, 207, 41, 1),
                (0, 230, 0), 40,"single")
         mouse = pygame.mouse.get_pos()
         btn_2 = button("Back to Main", mouse[0], mouse[1], 10, 700, 300, 50,(113, 207, 41, 1),(0, 230, 0), 30, 5)
         if btn_2 == 5:
             menu()
         if btn_1 == "single":
-            playing(21)
+            playing(10)
         pygame.display.update()
 # Turn
 def turn(score, go_up, swallowed,rounds):
     # roll a dice using random number between 1 and 6
     d = randint(1, 6) 
-    print(type(d))
+    # print(type(d))
+    pygame.mixer.Sound.play(dice_sound)
     if d != 6:
         dice(d,rounds)
         six = False
     else:
         dice(d,rounds)
-        clock = pygame.time.get_ticks()
-        while pygame.time.get_ticks() - clock < 1500:
-            display_text(" HOT DICE", 130, 60, 55)
-            pygame.display.update()
-        six = True
+        if rounds==1:
+            clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - clock < 1500:
+                display_text(" HOT DICE", 210, 270, 40)
+                pygame.display.update()
+            six = True
+        if rounds==2:
+            clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - clock < 1500:
+                display_text(" HOT DICE", 1150, 270, 40)
+                pygame.display.update()
+            six = True
     score += d
     # if score is 100 or less
     if score <= 100:
-        ladd_score = ladders(score)  # checking for ladders for player
+        ladd_score = ladders(score,rounds)  # checking for ladders for player
         if ladd_score != score:
             go_up = True
-            clock = pygame.time.get_ticks()
+            pygame.mixer.Sound.play(ladder_sound)
             score = ladd_score
-        snake_score = snakes(score)
+        snake_score = snakes(score,rounds)
         if snake_score != score:  
             swallowed = True
+            pygame.mixer.Sound.play(snake_sound)
             score = snake_score
     # if score is not grater than 100
     else:  
-        score -= d
-        clock = pygame.time.get_ticks()
-        while pygame.time.get_ticks() - clock < 1500:
-            display_text("Oops, YOU CANT MOVE!", 130, 60, 55)
-            pygame.display.update()
+        if rounds==1:
+            score -= d
+            clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - clock < 500:
+                display_text("YOU CANT MOVE!", 220, 210, 40)
+                pygame.display.update()
+        if rounds==2:
+            score -= d
+            clock = pygame.time.get_ticks()
+            while pygame.time.get_ticks() - clock < 500:
+                display_text("YOU CANT MOVE!", 1170, 210, 40)
+                pygame.display.update()
     return score, go_up, swallowed, six
 
 def playing(btn1):
@@ -365,17 +399,17 @@ def playing(btn1):
     game_layout.blit(Board, (width / 2 - 250, height / 2 - 250))
     player1_x_c = 406 - 25
     player1_y_c = 606 - 25
-    comp_x_c = 406 - 25-40
+    comp_x_c = 1006 - 25-40
     comp_y_c = 606 - 25
     game_layout.blit(red_token, (comp_x_c, comp_y_c))
     game_layout.blit(blue_token, (player1_x_c, player1_y_c))
-    gamer1score = 0
-    gamer2score = 0
+    player1_score = 0
+    computer_score = 0
     rounds = 1
     while True:
-        up = False
-        down = False
-        time=2500
+        up=False
+        down=False
+        time=5500
         game_layout.blit(Background, (0, 0))
         game_layout.blit(Board, (width / 2 - 250, height / 2 - 250))
         mouse = pygame.mouse.get_pos()
@@ -386,53 +420,167 @@ def playing(btn1):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     Quit()
-        green_color=(113, 207, 41, 1)
-        light_green_color=(0, 230, 0)
-        print(btn1)
+        green_color = (113, 207, 41, 1)
+        light_green_color = (0, 230, 0)
+        
+        # print(btn1)
         if btn1:
-            if button("Click to Roll", mouse[0], mouse[1], 70, 138, 300, 50, green_color, light_green_color, 30,btn1):
+            if button("Click to Roll", mouse[0], mouse[1], 50, 138, 350, 50, green_color, light_green_color, 40, btn1):
                 if rounds == 1:
-                    gamer1score, up, down, six = turn(gamer1score, up, down,rounds)
-                    player1_x_c, player1_y_c = moving(gamer1score)
+                    player1_score, up, down, six = turn(player1_score, up, down,rounds)
+                    # tempx,tempy=player1_x_c, player1_y_c
+                    player1_x_c, player1_y_c = moving(player1_score)
                     if not six:
-                        rounds += 1
-                    if gamer1score == 100:
+                        rounds += 1  
+                    if player1_score == 100:
                         time = pygame.time.get_ticks()
                         while pygame.time.get_ticks() - time < 2500:
-                            display_text("Congratulations You WON !", 1000, 50, 50)
+                            display_text("Congratulations You WON !", 700, 50, 60)
+                            pygame.mixer.music.pause()
+                            while pygame.time.get_ticks() - time < 50:
+                                game_layout.blit(wins_player, (-5, height / 2 +70))
+                                game_layout.blit(loss_computer, (width - 120, height / 2+70))
+                                pygame.display.update()
+                                pygame.mixer.Sound.play(win_sound)
+                            pygame.mixer.music.unpause()
                             pygame.display.update()
                         break
+            
             game_layout.blit(red_token, (comp_x_c ,comp_y_c ))
-            if btn1 == 21:
-                game_layout.blit(blue_token, (player1_x_c + 2, player1_y_c))
-            button("Computer", mouse[0], mouse[1], 1100, 138, 200, 50, green_color, light_green_color, 30,btn1)
+            if btn1 == 10:
+                    game_layout.blit(blue_token, (player1_x_c + 2, player1_y_c))
+
+            button("Computer", mouse[0], mouse[1], 1050, 138, 220, 50, green_color, light_green_color, 40,btn1)
             if rounds == 2:
-                gamer2score, up, down, six = turn(gamer2score, up, down,rounds)
-                comp_x_c, comp_y_c = moving(gamer2score)
+                computer_score, up, down, six = turn(computer_score, up, down,rounds)
+                comp_x_c, comp_y_c = moving(computer_score)
                 if not six:
                     rounds += 1
-                    if btn1 == 21:
+                    if btn1 == 10:
                         rounds = 1
-                if gamer2score == 100:
+                computer_score == 100
+                if computer_score == 100:
                     time_clock = pygame.time.get_ticks()
-                    while pygame.time.get_ticks() - time_clock < 2000:
-                        display_text("Computer Wins !", 1066, 50, 50)
+                    while pygame.time.get_ticks() - time_clock < 500:
+                        display_text("Computer Won !", 1066, 50, 60)
+                        pygame.mixer.music.pause()
+                        while pygame.time.get_ticks() - time_clock < 2500:
+                            game_layout.blit(wins_computer, (width - 250, height / 2 + 70))
+                            game_layout.blit(loss_player, (-5, height / 2 +70))
+                            pygame.display.update()
+                            pygame.mixer.Sound.play(lose_sound)
+                        pygame.mixer.music.unpause()
                         pygame.display.update()
-                    break
-        if up:
-            time_clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - time_clock < 1000:
-                display_text2("To use the ladder:Please answer a simple question", 700, 50, 35, (250, 250, 250))
-                pygame.display.update()
-        if down:
-            time_clock = pygame.time.get_ticks()
-            while pygame.time.get_ticks() - time_clock < 1000:
-                display_text2("To avoid a Snake:Please answer a simple question", 750, 50, 35, (250, 250, 250))
-                pygame.display.update()
+                    break        
         clock.tick()
         pygame.display.update()
 
-def math():
-    return False
+def math(rounds):
+    if rounds==1:
+        clock = pygame.time.get_ticks()
+        while pygame.time.get_ticks() - clock < 500:
+            display_text2("Please answer a simple question", 700, 50, 35, (250, 250, 250))
+            pygame.display.update()
+        font = pygame.font.Font(None, 32)
+        input_box = pygame.Rect(585, 570, 140, 32)
+
+        questions = [["assets/question/q1.jpg", '0'],
+                    ["assets/question/q2.jpg", '0'],
+                    ["assets/question/q3.jpg", '0'],
+                    ["assets/question/q4.jpg", '0'],
+                    ["assets/question/q5.jpg", '0'],
+                    ["assets/question/q6.jpg", '0'],
+                    ["assets/question/q7.jpg", '0'],
+                    ["assets/question/q8.jpg", '0'],
+                    ["assets/question/q9.jpg", '0'],
+                    ["assets/question/q10.jpg", '0'],
+                    ["assets/question/q11.jpg", '0'],
+                    ["assets/question/q12.jpg", '0'],
+                    ["assets/question/q13.jpg", '0'],
+                    ["assets/question/q14.jpg", '0'],
+                    ["assets/question/q15.jpg", '0'],
+                    ["assets/question/q16.jpg", '0'],
+                    ["assets/question/q17.jpg", '0'],
+                    ["assets/question/q18.jpg", '0']]
+        read_q = randint(0, 17)
+        get_question = True
+
+        while get_question:
+            if questions[read_q][0] in last_question:
+                read_q = randint(0, 17)
+            else:
+                last_question.append(questions[read_q][0])
+                get_question = False
+
+        # print(last_question)
+        question = pygame.image.load(questions[read_q][0])
+        answer = questions[read_q][1]
+
+
+        color_inactive = pygame.Color('lightskyblue3')
+        color_active = pygame.Color('dodgerblue2')
+        color = color_inactive
+
+        active = False
+        text = ''
+        done = False
+
+        while not done:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    Quit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    # If the user clicked on the input_box rect.
+                    if input_box.collidepoint(event.pos):
+                        # Toggle the active variable.
+                        active = not active
+                    else:
+                        active = False
+                    # Change the current color of the input box.
+                    color = color_active if active else color_inactive
+                if event.type == pygame.KEYDOWN:
+                    if active:
+                        if event.key == pygame.K_RETURN:
+                            # check if the player answer the question
+                            if text:
+                                if text == answer:
+                                    return True
+                                else:
+                                    return False
+                        elif event.key == pygame.K_BACKSPACE:
+                            text = text[:-1]
+                        else:
+                            check_text = re.findall('[0-9]', event.unicode)
+                            if check_text:
+                                text += event.unicode
+
+
+            pygame.draw.rect(game_layout, (30, 30, 30), pygame.Rect(433, 134, 500, 500))
+            game_layout.blit(question, (433, 134))
+
+            # Render the current text.
+            txt_surface = font.render(text, True, color)
+
+            # Resize the box if the text is too long.
+            width_box = max(200, txt_surface.get_width()+10)
+
+            input_box.w = width_box
+
+            # Blit the text.
+            game_layout.blit(txt_surface, (input_box.x+5, input_box.y+5))
+
+            # Blit the input_box rect.
+            pygame.draw.rect(game_layout, color, input_box, 2)
+            pygame.display.update()
+            game_layout.blit(Board, (width / 2 - 250, height / 2 - 250))
+    else: 
+        # computer will have 50/50 chance to have a correct answer
+        computer_answer = randint(0,1)
+        print(computer_answer)
+        if  computer_answer==0:
+            return False
+        else:
+            return True
 starter()
 menu()
