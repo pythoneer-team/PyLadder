@@ -13,7 +13,7 @@ height = 768
 
 # Icon layout and caption
 icon = pygame.image.load("../assets/icon.jpg")
-game_layout = pygame.display.set_mode((width, height))
+game_layout = pygame.display.set_mode((width, height), pygame.FULLSCREEN)
 pygame.display.set_caption("Pyladder Game")
 pygame.display.set_icon(icon)
 pygame.display.update()
