@@ -4,7 +4,7 @@ PyLadder
 ## Our Team Members:
 
 - Maram Ankir
-- Mohammad Khaled talafha
+- Mohammad Khaled Talafha
 - Yousef Jalboush
 - Omar D'yab
 - Dina Albarghouthi
