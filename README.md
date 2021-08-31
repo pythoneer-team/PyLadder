@@ -33,13 +33,13 @@ The game is a combination between learning math and "Snakes and ladders", or as 
 
 
 # Wireframe
-![wireframe](assets/wf.png)
+![wireframe](assets1/wf.png)
 
 # User stories:
 [User stories](https://github.com/orgs/pythoneer-team/projects/1)
 
 # Domain modeling: 
-![Domain modelling](assets/diagram.png)
+![Domain modelling](assets1/diagram.png)
 
 
 
