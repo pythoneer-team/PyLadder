@@ -68,29 +68,55 @@ mouse = pygame.mouse.get_pos()
 # Last Question
 last_question = []
 
-# prompt text when player/computer wins the game , or when a player cant move due to movments being higher than 100  
+ 
 def display_text(text, x, y, fontsize):
+    """
+    prompt text when player/computer wins the game , or when a player cant move due to movments being higher than 100  
+    arguments: text:string, x coordiantes:number, ycoordiantes:number, font size:number
+    return: nothing
+    """
     Textsize = pygame.font.SysFont("couriernew", fontsize)
     Texts, TextBox = text_reshape(text, Textsize)
     TextBox.center = (x, y)
     game_layout.blit(Texts, TextBox)
 # text reshape
 def text_reshape(text, font):
+    """
+    Reshape the text color and font of the given text
+    arguments: text:String, font:String
+    return: String,Number
+    """
     Texts = font.render(text, True, (250, 250, 250))
     return Texts, Texts.get_rect()
 # prompt Messagewhen there is a ladder or a snake 
 def display_text2(text, x, y, fontsize,c):
+    """
+    prompt Message when there is a ladder or a snake 
+    arguments: text:string, x :number, y:number, fontsize:number, c:number
+    return: nothing
+    """
     Textsize = pygame.font.SysFont("courier new", fontsize)
     texts, TextBox = text_reshape2(text, Textsize,c)
     TextBox.center = (x, y)
     game_layout.blit(texts, TextBox)
 
 def text_reshape2(text, font, c):
+    """
+    Reshape the text color and font of the given text
+    arguments: text:String, font:String, c;number
+    return: String,Number
+    """
     Texts = font.render(text, True, c)
     return Texts, Texts.get_rect()
 
-# Goti movement function Yousef (returning x and y cooridinates)
+
 def moving(a):
+    """
+    this function is determining where the token coordinates on the board 
+    parameters:
+                a:number
+    return: x:number,y:number
+    """
     l1 = [[406, 606], [456, 606], [506, 606], [556, 606], [606, 606], [656, 606], [706, 606], [756, 606], [806, 606],
           [856, 606], [906, 606], [906, 560], [856, 560], [806, 560], [756, 560], [706, 560], [656, 560], [606, 560],
           [556, 560], [506, 560], [456, 560], [456, 506], [506, 506], [556, 506], [606, 506], [656, 506], [706, 506],
@@ -110,6 +136,10 @@ def moving(a):
 
 # Ladder check maram
 def ladders(x,rounds):
+    """this function is when a token faces a ladder, a math question pops up, then based on the answer it determines which location to return
+    parameters:x:number,rounds:number
+    return: number
+    """
     if x == 1:
         if math(rounds):
             return 38
@@ -155,6 +185,11 @@ def ladders(x,rounds):
 
 # Snake Check Omar
 def snakes(x,rounds):
+    """
+    This function is when a token faces a snake, a math question pops up, then based on the answer it determines which location to return
+    parameters:x:number,rounds:number
+    return: number
+    """
     if x == 17:
         if math(rounds):
             return 17
@@ -197,8 +232,13 @@ def snakes(x,rounds):
             return 79
     else:
         return x
-#  dices and thier images Yousef (to do: change time)
+
 def dice(d,rounds):
+    """
+    this function will show dice images based on its number (computer or player)
+    parameters:d: number,rounds:number
+    return: nothing
+    """
     if d == 1:
         d = dice1
     elif d == 2:
@@ -225,10 +265,20 @@ def dice(d,rounds):
     # for mute and unmute
 # Quitting:
 def Quit():
+    """
+    This function will quit the game
+    parameters:nothing
+    return: nothing
+    """
     pygame.quit()
     quit()
 # Button:
 def button(text, xmouse, ymouse, x, y, width, height, int, new, size,btn_1):
+    """
+    This function will determine a location of a button and decide what to do based on which button is clicked
+    parameters:text: String, xmouse:number, ymouse: number, x:number, y:number, width :number, height:number, int:number, new:number, size:number,btn_1:number
+    return: nothing
+    """
     if x + width > xmouse > x and y + height > ymouse > y:
         pygame.draw.rect(game_layout, new, [x - 2.5, y - 2.5, width + 5, height + 5])
         if pygame.mouse.get_pressed() == (1, 0, 0):
@@ -247,6 +297,11 @@ def button(text, xmouse, ymouse, x, y, width, height, int, new, size,btn_1):
     display_text(text, (x + width + x) / 2, (y + height + y) / 2, size)
 # game rules
 def rules():
+    """
+    This function will show the rules of the game once Rules button pressed
+    parameters:nothing
+    return: nothing
+    """
     while True:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -263,6 +318,11 @@ def rules():
             pygame.display.update()
 #  Game lunching
 def starter():
+    """
+    This function will show a time frame images while launching the game
+    parameters:nothing
+    return: nothing
+    """
     time_clock = pygame.time.get_ticks()
     while pygame.time.get_ticks() - time_clock < 2500:
         game_layout.blit(back1, (0, 0))
@@ -292,6 +352,11 @@ def starter():
         pygame.display.update()
 # about our project and team members
 def ASAC():
+    """
+    This function will show our team info with a summary
+    parameters:nothing
+    return: nothing
+    """
     while True:
         game_layout.blit(asac_project, (0, 0))
         for event in pygame.event.get():
@@ -304,6 +369,11 @@ def ASAC():
         pygame.display.update()
 # Main Menu of our game
 def menu():
+    """
+    This function will show options that player can choose from and will start the music of the game
+    parameters:nothing
+    return: nothing
+    """
     pygame.mixer.music.play(-1)
     while True:
         for event in pygame.event.get():
@@ -323,6 +393,11 @@ def menu():
         pygame.display.update()
 # Options Menu after chosing Play:
 def chosen():
+    """
+    This function will decide whether to play against computer or to go back to main menu
+    parameters:nothing
+    return: nothing
+    """
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -344,6 +419,11 @@ def chosen():
         pygame.display.update()
 # Turn
 def turn(score, go_up, swallowed,rounds):
+    """
+    This function will roll a dice, decide what to do when facing a snake or a ladder and if a roll dice is a hot dice 
+    parameters:score:number, go_up:boolean, swallowed:boolean,rounds:number
+    return number, boolean, boolean, boolean
+    """
     # roll a dice using random number between 1 and 6
     d = randint(1, 6) 
     # print(type(d))
@@ -396,6 +476,11 @@ def turn(score, go_up, swallowed,rounds):
 
 
 def playing(btn1):
+    """
+    This function will run once the game starts and will show game board tokens and dices and the game layout 
+    parameters:btn1:number
+    return: nothing
+    """
     game_layout.blit(Background, (0, 0))
     game_layout.blit(Board, (width / 2 - 250, height / 2 - 250))
     player1_x_c = 406 - 25
@@ -488,7 +573,11 @@ def playing(btn1):
 
 
 def math(rounds):
-    
+    """
+    This function will show math question wait for the player to answer it
+    parameters:rounds:number
+    return: nothing
+    """
     if rounds == 1:
         font = pygame.font.Font(None, 32)
         input_box = pygame.Rect(585, 570, 140, 32)
